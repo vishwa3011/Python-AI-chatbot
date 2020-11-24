@@ -8,6 +8,12 @@ import tensorflow
 import random
 import json
 import pickle
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+
+
 
 with open("intents.json") as file:
     data = json.load(file)
@@ -112,14 +118,14 @@ def bag_of_words(sentence, words):
             
     return np.array(bag)
 
+@app.route("/", methods=['GET', 'POST'])
 def chat():
-    print("Start talking with the bot! (Type 'quit' to stop)")
+   
+    inp = request.form.get('text_input')
+    output_text=""
+    if request.method == "POST":
 
-    while True:
-        inp = input("You: ")
-        if inp.lower() == "quit":
-            break
-        
+       
         result = model.predict([bag_of_words(inp, words)])[0]
         result_index = np.argmax(result)
         tag = labels[result_index]
@@ -129,8 +135,16 @@ def chat():
                 if tg['tag'] == tag:
                     responses = tg['responses']
             
-            print(random.choice(responses))
+            #print(random.choice(responses))
+            output_text=random.choice(responses)
+            #print(output_text)
         else:
-            print("I didn't to understand that, Please ask another question...")
-chat()
+            output_text="I didn't understand that, Please ask another question..."
 
+    return render_template("index.html",content=output_text)
+
+#chat()
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
