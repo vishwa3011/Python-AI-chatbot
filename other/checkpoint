@@ -1,2 +1,2 @@
-model_checkpoint_path: "D:\\Vishwa\\Python chatbot using DL\\model.tflearn"
-all_model_checkpoint_paths: "D:\\Vishwa\\Python chatbot using DL\\model.tflearn"
+model_checkpoint_path: "D:\\Vishwa\\Python chatbot using DL\\other\\model1.tflearn"
+all_model_checkpoint_paths: "D:\\Vishwa\\Python chatbot using DL\\other\\model1.tflearn"

@@ -8,7 +8,7 @@ import tensorflow
 import random
 import json
 import pickle
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ with open("intents.json") as file:
     data = json.load(file)
 
 try:
-    with open("other/data.pickle", "rb") as f:
+    with open("other/data1.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
 except:
     words=[]
@@ -78,7 +78,7 @@ except:
     training = np.array(training)
     output = np.array(output)
 
-    with open("other/data.pickle", "wb") as f:
+    with open("other/data1.pickle", "wb") as f:
         pickle.dump((words, labels, training, output),f)
 
 
@@ -99,10 +99,10 @@ net = tflearn.regression(net)
 model = tflearn.DNN(net)
 
 try:
-    model.load("other/model.tflearn")
+    model.load("other/model1.tflearn")
 except:
     model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("other/model.tflearn")
+    model.save("other/model1.tflearn")
 
 
 def bag_of_words(sentence, words):
@@ -146,5 +146,4 @@ def chat():
 #chat()
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    app.run(debug = True)

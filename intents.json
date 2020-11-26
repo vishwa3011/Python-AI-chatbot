@@ -28,6 +28,11 @@
          "patterns": ["when are you guys open", "what are your hours", "hours of operation"],
          "responses": ["We are open 7am-4pm Monday-Friday!"],
          "context_set": ""
+        },
+        {"tag": "Sir Alex Ferguson",
+        "patterns": ["who is the most successful manager ever", "most decorated manager", "who was the long time serving manager of manchester united"],
+        "responses": ["It's Sir Alex Ferguson","Sir Alexander Chapman Ferguson CBE is a Scottish former football manager and player widely known for managing Manchester United from 1986 to 2013. He is considered by many to be one of the greatest managers of all time and he has won more trophies than any other manager in the history of football."],
+        "context_set": ""
         }
    ]
 }
